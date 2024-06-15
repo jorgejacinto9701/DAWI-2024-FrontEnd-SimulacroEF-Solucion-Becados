@@ -63,7 +63,9 @@ export class RevistaService {
           headers.append('Accept', 'application/pdf');
           let requestOptions: any = { headers: headers, responseType: 'blob' };
 
-          return this.http.post(baseUrlConsultaRevista +"/reporteRevistaPdf",{params}, requestOptions).pipe(map((response)=>{
+          return this.http.post(baseUrlConsultaRevista +"/reporteRevistaPDF?nombre="+nom+"&frecuencia="
+            +fre+"&fecDesde="+desde+"&fecHasta="+hasta+"&estado="+
+            est+"&idPais="+p+"&idTipo="+t,'', requestOptions).pipe(map((response)=>{
             return {
                 filename: 'reporteDocente20232.pdf',
                 data: new Blob([response], {type: 'application/pdf'})
@@ -86,7 +88,9 @@ export class RevistaService {
     headers.append('Accept', 'application/vnd.ms-excel');
     let requestOptions: any = { headers: headers, responseType: 'blob' };
 
-    return this.http.post(baseUrlConsultaRevista +"/reporteRevistaExcel?nombre="+nom+"&frecuencia="+fre+"&fecDesde="+desde+"&fecHasta="+hasta+"&estado="+est+"&idPais="+p+"&idTipo="+t,'', requestOptions).pipe(map((response)=>{
+    return this.http.post(baseUrlConsultaRevista +"/reporteRevistaExcel?nombre="+nom+"&frecuencia="
+      +fre+"&fecDesde="+desde+"&fecHasta="+hasta+"&estado="+
+      est+"&idPais="+p+"&idTipo="+t,'', requestOptions).pipe(map((response)=>{
       return {
           filename: 'reporteExcel20232.xlsx',
           data: new Blob([response], {type: 'application/vnd.ms-excel'})
